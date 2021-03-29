@@ -1,4 +1,14 @@
-const getRemainingTime = deadline => {
+
+var snk = 73;
+var nAm = 40;
+cantidadDecaps = snk + nAm;
+
+inicioPor = 'Mar 14 2021 00:00:00 GMT-0300';
+inicioCap = 'Mar 18 2021 21:00:00 GMT-0300';
+
+
+
+const getRemainingTime = (deadline,ini) => {
     let now = new Date(),
         remainTime = (new Date(deadline) - now + 1000) / 1000,
         remainSeconds = ('0' + Math.floor(remainTime % 60)).slice(-2),
@@ -6,7 +16,7 @@ const getRemainingTime = deadline => {
         remainHours = ('0' + Math.floor(remainTime / 3600 % 24)).slice(-2),
         remainDays = Math.floor(remainTime / (3600 * 24));
 
-        totalTime = new Date('Oct 27 2024 00:00:00 GMT-0300').getTime()-(new Date('Mar 14 2021 00:00:00 GMT-0300').getTime())+1000;
+        totalTime = new Date('Oct 27 2024 00:00:00 GMT-0300').getTime()-(new Date(ini).getTime())+1000;
   
     return {
       remainSeconds,
@@ -22,16 +32,18 @@ const getRemainingTime = deadline => {
     const el = document.getElementById(elem);
   
     const timerUpdate = setInterval( () => {
-      let t = getRemainingTime(deadline);
+      let t = getRemainingTime(deadline,inicioPor);
       el.innerHTML = `${t.remainDays}d:${t.remainHours}h:${t.remainMinutes}m:${t.remainSeconds}s`+"<br>"+("" +(100- 100*(t.remainTime*1000 /t.totalTime))).substr(0,9)+ "%";
 
-      var cap = Math.floor(80-(t.remainTime * 1000 /t.totalTime) * 80);
+      let t2 = getRemainingTime(deadline,inicioCap);
+
+      var cap = Math.floor(cantidadDecaps-(t2.remainTime * 1000 /t2.totalTime) * cantidadDecaps);
 
       el.innerHTML += "<br><br> Ver hasta el cap: "+cap+"<br><br>";
 
-      var cop = (80-(t.remainTime * 1000 /t.totalTime) * 80);
+      var cop = (cantidadDecaps-(t2.remainTime * 1000 /t2.totalTime) * cantidadDecaps);
 
-      var owo = (80-cap-1)/80 * t.totalTime *10;
+      var owo = (cantidadDecaps-cap-1)/cantidadDecaps * t2.totalTime *10;
 
       var awa = Math.floor(t.remainTime*10000 - owo)/10000;
 
