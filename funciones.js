@@ -33,7 +33,12 @@ const getRemainingTime = (deadline,ini) => {
   
     const timerUpdate = setInterval( () => {
       let t = getRemainingTime(deadline,inicioPor);
-      el.innerHTML = `${t.remainDays}d:${t.remainHours}h:${t.remainMinutes}m:${t.remainSeconds}s`+"<br>"+("" +(100- 100*(t.remainTime*1000 /t.totalTime))).substr(0,9)+ "%";
+
+      var porcentaje = (100- 100*(t.remainTime*1000 /t.totalTime));
+
+      el.innerHTML = `${t.remainDays}d:${t.remainHours}h:${t.remainMinutes}m:${t.remainSeconds}s`+"<br>"+("" +porcentaje).substr(0,9)+ "%";
+
+      el.innerHTML += "<br>" + (""+(100-porcentaje)/porcentaje*100).substr(0,9)+ "%";
 
       let t2 = getRemainingTime(deadline,inicioCap);
 
@@ -56,6 +61,8 @@ const getRemainingTime = (deadline,ini) => {
       remainDays = Math.floor(awa / (3600 * 24))
 
       el.innerHTML += "Siguiente cap en: "+`${remainDays}d:${remainHours}h:${remainMinutes}m:${remainSeconds}s`;
+
+      
 
      
 
