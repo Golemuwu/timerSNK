@@ -1,15 +1,18 @@
 
 var snk = 73;
 var nAm = 40;
-cantidadDecaps = snk + nAm;
+var sbg = 13;
+var mer = 13+ 13 + 14;
+var atp = 8 + 10 + 10;
+cantidadDecaps = snk + nAm + sbg+ mer + atp;
 
 inicioPor = 'Mar 14 2021 00:00:00 GMT-0300';
-inicioCap = 'Mar 18 2021 21:00:00 GMT-0300';
+inicioCap = 'Apr 5 2021 21:00:00 GMT-0300';
 
-
+var cant = false;
 
 const getRemainingTime = (deadline,ini) => {
-    let now = new Date(),
+    let now = (cant)? new Date(inicioCap) : new Date();
         remainTime = (new Date(deadline) - now + 1000) / 1000,
         remainSeconds = ('0' + Math.floor(remainTime % 60)).slice(-2),
         remainMinutes = ('0' + Math.floor(remainTime / 60 % 60)).slice(-2),
